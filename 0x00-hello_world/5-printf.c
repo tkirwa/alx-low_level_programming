@@ -1,5 +1,5 @@
 #include <stdio.h>
-/*
+/**
  * main marks the entry point into the program
  * Description: This programs prints hello world using function printf
  * Returns zero to mark success
