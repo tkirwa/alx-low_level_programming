@@ -6,7 +6,7 @@
 (* stdio header: Contains function printf & data types)*
  * Return: returned value is 0 which means the execution was successful
  */
-int main(void) 
+int main(void)
 {
 	int a;
 	long int b;
