@@ -1,5 +1,5 @@
 #include <stdio.h>
-/*
+/**
  * main - main marks the entry point into the program
  * @void: When parameter X is void, it means it is not accepting any args
 (*
@@ -9,6 +9,6 @@
  */
 int main(void)
 {
-	puts("\"Programming is like building a multilingual puzzle");
+	puts("\"Programming is like building a multilingual puzzle\n");
 	return (0);
 }
