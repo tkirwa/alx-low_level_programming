@@ -1,10 +1,12 @@
 #include <stdio.h>
 /**
- * main marks the entry point into the program
+ *
+ * main - main marks the entry point into the program
  *
  * Description: This programs prints hello world using function printf
+ (* stdio.h: it has printf)*
  *
- * Returns zero to mark success
+ * Return: Returns zero to mark success
  *
  */
 int main(void)
