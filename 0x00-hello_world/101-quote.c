@@ -11,7 +11,6 @@
 int main(void)
 {
 	write(2,
-		"Programming is like building a multilingual puzzle with proper grammar, but the outcome is a piece of art,"
 		"and that piece of art is useful - Dora Korpar, 2015-10-19\n",
 		58);
 
