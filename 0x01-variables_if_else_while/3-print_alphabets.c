@@ -3,7 +3,7 @@
  * main - main marks the entry point into the program
  * @void: When parameter X is void, it means it is not acceptions any arg
 (* Description: Write a program that prints the alphabet in lowercase)?
-(* Description: ...and the uppercase)?
+ * and uppercase
  *
 (* stdio.h header: performing input and output)*
  * Return: Always 0.
@@ -25,5 +25,5 @@ for (c = 'A'; c <= 'Z'; c++)
 putchar(c);
 }
 putchar('\n');
-return 0;
+return (0);
 }
