@@ -10,21 +10,26 @@
 */
 int main(void)
 {
+
 /*Declaration*/
 int a, b;
-
 /*For Loop for all possible two-digit combination*/
-for (a = 0; a <= 9; a++)
+for (a = 0; a < 9; a++)
 {
-for (b = a + 1; b <= 9; b++)
+for (b = a + 1; b < 10; b++)
 {
-putchar(a + '0');
-putchar(b + '0');
+putchar((a % 10) + '0');
+putchar((b % 10) + '0');
+
+if (a == 8 && b == 9)
+continue;
+
 putchar(',');
 putchar(' ');
 }
 }
-putchar('\n');
-return 0;
-}
 
+putchar('\n');
+
+return (0);
+}
