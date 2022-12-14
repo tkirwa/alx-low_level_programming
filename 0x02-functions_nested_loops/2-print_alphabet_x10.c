@@ -1,25 +1,28 @@
 #include "main.h"
 /**
- * print_alphabet - Write a function that prints 10 times the alphabet..
- * in lowercase, followed by a new line
- */
+* @void: When parameter X is void, it means it is not acceptions any arg
+(* Description: Write a function that prints 10 times the alphabet...)?
+*  in lowercase, followed by a new line.
+* print_alphabet - Write a function that prints 10 times the alphabet..
+* in lowercase, followed by a new line
+*/
 void print_alphabet_x10(void)
 {
-/*Declaration*/
+/*Declaration*/  
 int i;
 
+/*for loop*/
 for (i = 0; i < 10; i++)
 {
-/*Declaration*/
+/*Declaration*/  
 char letter;
 /*for loop*/
 for (letter = 'a'; letter <= 'z'; letter++)
 {
+/*prints alphabetical letters*/
 _putchar(letter);
 }
-/*new line*/
+/*prints new line*/
 _putchar('\n');
 }
 }
-
-
