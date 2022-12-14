@@ -1,10 +1,13 @@
 #include "main.h"
 /**
-(* Description: print_alphabet_x10 prints 10 times the alphabet...)?
-*  in lowercase, followed by a new line.
-(* print_alphabet_x10 - Write a function that prints 10 times the alphabet..)?
-* in lowercase, followed by a new line
-* 
+* print_alphabet_x10 - prints 10 times the alphabet, in lowercase
+* @void: When parameter X is void, it means it is not acceptions any arg
+(* Description: Write a function that prints 10 times the alphabet...)?
+*   in lowercase, followed by a new line.
+*
+(* main.h header: contains prototypes of all your functions....
+* and the prototype of the function _putchar)*
+* Return: Always 0.
 */
 void print_alphabet_x10(void)
 {
