@@ -6,8 +6,7 @@
 * @n2: second string of ints
 * @r: result string
 * @size_r: size of result string
-* Return: pointer to result string...
-* or NULL if the result string is not large enough
+* Return: pointer to result string, or NULL if the result string is not large enough
 */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
 {
@@ -17,7 +16,7 @@ int carry = 0;
 int i, j;
 
 if (len1 + 1 > size_r || len2 + 1 > size_r)
-return (NULL);
+return NULL;
 
 for (i = len1 - 1, j = len2 - 1; i >= 0 || j >= 0; i--, j--)
 {
@@ -37,5 +36,5 @@ r[len1 > len2 ? i : j] = sum + '0';
 if (carry)
 r[len1 > len2 ? i : j] = carry + '0';
 
-return (r);
+return r;
 }
