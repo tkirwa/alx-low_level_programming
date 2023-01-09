@@ -1,35 +1,21 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * _strncpy - function that concatenates two strings
- *
- * @dest: parameter defined in main
- * @src: parameter defined in main
- * @n: parameter defined in main
- *
- * Return: memory address of function (string)
+ * _strncpy - Entry point
+ * @dest: copy to
+ * @src: copy from
+ * @n: input number of char
+ * Return: Always 0 (Success)
  */
-
 char *_strncpy(char *dest, char *src, int n)
 {
+	int i;
 
-	char *tmp1 = dest;
-	char *tmp2 = src;
+	for (i = 0; src[i] != '\0'; i++)
+		if (i < n)
+			dest[i] = src[i];
+		while (i < n)
+			dest[i++] = '\0';
 
-	while (src < tmp2 + n && *src != '\0')
-	{
-		*dest = *src;
-		src++;
-		dest++;
-	}
-	while (src < tmp2 + n)
-	{
-		*dest = '\0';
-		dest++;
-		src++;
-	}
-	dest = tmp1;
-	src = tmp2;
 	return (dest);
 }
