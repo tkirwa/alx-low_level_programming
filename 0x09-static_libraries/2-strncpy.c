@@ -31,6 +31,5 @@ char *_strncpy(char *dest, char *src, int n)
 	}
 	dest = tmp1;
 	src = tmp2;
-	
 	return (dest);
 }
