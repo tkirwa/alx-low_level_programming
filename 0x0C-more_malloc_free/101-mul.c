@@ -1,126 +1,301 @@
-#include "main.h"
 #include <stdlib.h>
-#include <stdio.h>
-#include <ctype.h>
+#include "main.h"
 
 /**
- * _is_zero - determines if any number is zero
- * @argv: argument vector.
- *
- * Return: no return.
+ * print_str - Print a given string
+ * @str: String to print
  */
-void _is_zero(char *argv[])
+void print_str(char *str)
 {
-	int i, isn1 = 1, isn2 = 1;
+	int i;
 
-	for (i = 0; argv[1][i]; i++)
-		if (argv[1][i] != '0')
-		{
-			isn1 = 0;
-			break;
-		}
-
-	for (i = 0; argv[2][i]; i++)
-		if (argv[2][i] != '0')
-		{
-			isn2 = 0;
-			break;
-		}
-
-	if (isn1 == 1 || isn2 == 1)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		printf("0\n");
-		exit(0);
+		_putchar(str[i]);
+		i++;
 	}
+	_putchar('\n');
+}
+
+
+/**
+ * print_err - Print the word "Error"
+ */
+void print_err(void)
+{
+	_putchar('E');
+	_putchar('r');
+	_putchar('r');
+	_putchar('o');
+	_putchar('r');
+	_putchar('\n');
+	exit(98);
 }
 
 /**
- * _initialize_array - set memery to zero in a new array
- * @ar: char array.
- * @lar: length of the char array.
- *
- * Return: pointer of a char array.
+ * rev_string - Reverse the given string
+ * @s: The string to reverse
+ * @size: Size of string to revers;
+ * Return: Nothing
  */
-char *_initialize_array(char *ar, int lar)
+void rev_string(char *s, int size)
 {
-	int i = 0;
+	char *str;
+	int i, r;
 
-	for (i = 0; i < lar; i++)
-		ar[i] = '0';
-	ar[lar] = '\0';
-	return (ar);
+	str = malloc(size);
+	if (str == NULL)
+		print_err();
+	i = 0;
+	while (*(s + i) != 0)
+	{
+		str[i] = *(s + i);
+		i++;
+	}
+	r = i - 1;
+	i = 0;
+	while (r > 0)
+	{
+		*(s + r) = str[i];
+		r--;
+		i++;
+	}
+	*(s + r) = str[i];
+	free(str);
 }
 
 /**
- * _checknum - determines length of the number
- * and checks if number is in base 10.
- * @argv: arguments vector.
- * @n: row of the array.
+ * str_len - Find the length of a given string
+ * @str: String to find the length of
  *
- * Return: length of the number.
+ * Return: Length of the string
  */
-int _checknum(char *argv[], int n)
+unsigned int str_len(char *str)
 {
-	int ln;
+	unsigned int i;
 
-	for (ln = 0; argv[n][ln]; ln++)
-		if (!isdigit(argv[n][ln]))
+	i = 0;
+	while (str[i] != '\0')
+	{
+		i++;
+	}
+	return (i);
+}
+
+/**
+ * init - Initialize an array with 0
+ * @arr: The array to initialize
+ * @size: Size of the array
+ *
+ * Return: Pointer to array
+ */
+char *init(char *arr, int size)
+{
+	int i;
+
+	i = 0;
+	while (i < size)
+	{
+		arr[i] = '0';
+		i++;
+	}
+	return (arr);
+}
+
+/**
+ * _isstrdigit - Check if input is only numbers
+ * @str: Given input to check
+ *
+ * Return: 1 if a number, 0 if otherwise
+ */
+int _isstrdigit(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+/**
+ * mul - Multiply two strings together
+ * @num1: The first number, as a string
+ * @num2: The second number, as a string
+ * @len1: The length of the first string
+ * @len2: The length of the second string
+ *
+ * Return: Pointer to char array
+ */
+char *mul(char *num1, char *num2, int len1, int len2)
+{
+	int i, prod, j, carry, k, digit, reslen;
+	char *res;
+
+	reslen = len1 + len2 + 1;
+	res = malloc(reslen * sizeof(char));
+	if (res == NULL)
+		print_err();
+	res = init(res, reslen);
+	i = len2 - 1; carry = k = digit = 0;
+	while (i >= 0 && k < (len1 + len2))
+	{
+		j = len1 - 1;
+		k = digit;
+		while (j >= 0)
 		{
-			printf("Error\n");
-			exit(98);
+			carry = 0;
+			prod = (num1[j] - '0') * (num2[i] - '0');
+			if (prod > 9)
+				carry += prod / 10;
+			prod = prod % 10;
+			if (((res[k] - '0') + prod) > 9)
+			{
+				carry += 1;
+				res[k] += (prod - 10);
+			}
+			else
+				res[k] += prod;
+			res[k + 1] += carry;
+			k++; j--;
 		}
-
-	return (ln);
+		i--; digit++;
+	}
+	if (res[k] == '0')
+		res[k] = '\0';
+	else
+		res[k + 1] = '\0';
+	return (res);
 }
 
 /**
- * main - Entry point.
- * program that multiplies two positive numbers.
- * @argc: number of arguments.
- * @argv: arguments vector.
+ * remove_zeroes - Remove zeroes from num
+ * @str: String to remove zeroes from
+ * @len: Length of string
  *
- * Return: 0 - success.
+ * Return: Pointer to new string
+ */
+char *remove_zeroes(char *str, int len)
+{
+	int i, j;
+	char *nstr;
+
+	i = 0;
+	while (str[i] == '0' && str[i] != '\0')
+	{
+		i++;
+	}
+	if (len - i == 0)
+	{
+		nstr = malloc(2 * sizeof(*nstr));
+		nstr[0] = '0';
+		nstr[1] = '\0';
+		return (nstr);
+	}
+	else
+		len -= i;
+	nstr = malloc(len * sizeof(*nstr) + 1);
+	j = 0;
+	while (j < len)
+	{
+		nstr[j] = str[i];
+		j++;
+		i++;
+	}
+	nstr[j] = '\0';
+	return (nstr);
+}
+
+/**
+ * check_zero - Check to see if the number is zero or if zeroes need to be gone
+ * @str: Str to check for zeroes
+ * @len: len of string
+ *
+ * Return: Pointer to new num string
+ */
+char *check_zero(char *str, int len)
+{
+	char *num;
+	int i;
+
+	if (str[0] == '0' && len != 1)
+		num = remove_zeroes(str, len);
+	else if (str[0] == '0' && len == 1)
+	{
+		num = malloc(len + 1);
+		if (num == NULL)
+			print_err();
+		num[0] = '0';
+		num[1] = '\0';
+	}
+	else
+	{
+		num = malloc(len + 1);
+		if (num == NULL)
+			print_err();
+		i = 0;
+		while (i < len)
+		{
+			num[i] = str[i];
+			i++;
+		}
+		num[i] = '\0';
+	}
+	return (num);
+}
+
+/**
+ * main - Run all necessary functions to multply two strings as numbers
+ * @argc: Number of args
+ * @argv: Value of args
+ *
+ * Return: 0 on success
  */
 int main(int argc, char *argv[])
 {
-	int ln1, ln2, lnout, add, addl, i, j, k, ca;
-	char *nout;
+	int len1, len2, anslen;
+	char *ans, *num1, *num2;
 
 	if (argc != 3)
-		printf("Error\n"), exit(98);
-	ln1 = _checknum(argv, 1), ln2 = _checknum(argv, 2);
-	_is_zero(argv), lnout = ln1 + ln2, nout = malloc(lnout + 1);
-	if (nout == NULL)
-		printf("Error\n"), exit(98);
-	nout = _initialize_array(nout, lnout);
-	k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
-	for (; k >= 0; k--, i--)
 	{
-		if (i < 0)
-		{
-			if (addl > 0)
-			{
-				add = (nout[k] - '0') + addl;
-				if (add > 9)
-					nout[k - 1] = (add / 10) + '0';
-				nout[k] = (add % 10) + '0';
-			}
-			i = ln1 - 1, j--, addl = 0, ca++, k = lnout - (1 + ca);
-		}
-		if (j < 0)
-		{
-			if (nout[0] != '0')
-				break;
-			lnout--;
-			free(nout), nout = malloc(lnout + 1), nout = _initialize_array(nout, lnout);
-			k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
-		}
-		if (j >= 0)
-		{
-			add = ((argv[1][i] - '0') * (argv[2][j] - '0')) + (nout[k] - '0') + addl;
-			addl = add / 10, nout[k] = (add % 10) + '0';
-		}
+		print_err();
+		exit(98);
 	}
-	printf("%s\n", nout);
+	if (_isstrdigit(argv[1]) == 0 || _isstrdigit(argv[2]) == 0)
+	{
+		print_err();
+		exit(98);
+	}
+	len1 = str_len(argv[1]);
+	len2 = str_len(argv[2]);
+	num1 = check_zero(argv[1], len1);
+	if (*num1 == '0')
+	{
+		_putchar('0');
+		_putchar('\n');
+		return (0);
+	}
+	num2 = check_zero(argv[2], len2);
+	if (*num2 == '0')
+	{
+		_putchar('0');
+		_putchar('\n');
+		return (0);
+	}
+	len1 = str_len(num1);
+	len2 = str_len(num2);
+	if (len1 > len2)
+		ans = mul(num1, num2, len1, len2);
+	else
+		ans = mul(num2, num1, len2, len1);
+	anslen = str_len(ans);
+	rev_string(ans, anslen);
+	print_str(ans);
+	free(ans); free(num1); free(num2);
 	return (0);
 }
