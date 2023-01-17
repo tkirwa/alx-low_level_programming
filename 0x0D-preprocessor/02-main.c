@@ -1,18 +1,12 @@
-#include <unistd.h>
-#include <stdlib.h>
-#include "main.h"
-#include "_putchar.c"
+#include <stdio.h>
 
+/**
+* main - prints the name of the file it was compiled from
+*
+* Return: Everything worked ok
+*/
 int main(void)
 {
-    char *file;
-    int i;
-
-    file = __FILE__;
-
-    i = 0;
-    while (file[i])
-        _putchar(file[i++]);
-    _putchar('\n');
-    return (EXIT_SUCCESS);
+printf("%s\n", __FILE__);
+return (0);
 }
