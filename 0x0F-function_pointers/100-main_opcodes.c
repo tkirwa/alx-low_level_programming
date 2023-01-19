@@ -2,38 +2,37 @@
 #include <stdlib.h>
 
 /**
- * main - prints the opcodes of its own main function
- * @argc: number of arguments
- * @argv: array of arguments
+ * main - function with two arguments
+ * @argc: int type argument count
+ * @argv: char type argument array
  *
- * Return: 0 on success, 1-2 on failure
+ * Description: print opcode
+ * Return: na
  */
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-int i, bytes;
-unsigned char *opcodes;
+int count;
 
+count = 0;
 if (argc != 2)
 {
 printf("Error\n");
 exit(1);
 }
-
-bytes = atoi(argv[1]);
-if (bytes < 0)
+if (atoi(argv[1]) < 0)
 {
 printf("Error\n");
 exit(2);
 }
-
-opcodes = (unsigned char *)main;
-for (i = 0; i < bytes; i++)
+while (count < atoi(argv[1]))
 {
-printf("%02x", opcodes[i]);
-if (i < bytes - 1)
-putchar(',');
+printf("%02x", *((unsigned char *)main + count));
+count++;
+if (atoi(argv[1]) > count)
+{
+printf(" ");
 }
-putchar('\n');
-
+}
+printf("\n");
 return (0);
 }
