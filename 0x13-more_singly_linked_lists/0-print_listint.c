@@ -1,41 +1,21 @@
 #include "lists.h"
-#include <unistd.h>
-#include "_putchar.c"
+#include <stdio.h>
 
 /**
- * print_listint - function that prints all elements of a listint_t list
+ * print_listint - prints all the elements of a listint_t list
  * @h: pointer to the head of the list
  *
- * Return: the number of nodes
+ * Return: number of nodes
  */
 size_t print_listint(const listint_t *h)
 {
 size_t count = 0;
 
-while (h != NULL)
+while (h)
 {
-int n = h->n;
-int divisor = 1000000000;
-count++;
-
-if (n == 0)
-{
-_putchar('0');
-}
-else
-{
-while (divisor > 0)
-{
-int digit = n / divisor % 10;
-if (digit != 0 || divisor == 1)
-{
-_putchar('0' + digit);
-}
-divisor /= 10;
-}
-}
-_putchar('\n');
+printf("%d\n", h->n);
 h = h->next;
+count++;
 }
 
 return (count);
