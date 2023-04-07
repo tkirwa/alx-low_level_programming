@@ -23,7 +23,8 @@ typedef struct hash_node_s
  * struct hash_table_s - Hash table data structure
  *
  * @size: The size of the array
- * @array: An array of size @size containing pointers to the first node of a list
+ * @array: An array of size @size containing pointers to the first...
+ * node of a list
  */
 typedef struct hash_table_s
 {
