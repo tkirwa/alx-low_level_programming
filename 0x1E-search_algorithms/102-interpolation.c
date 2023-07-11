@@ -11,7 +11,6 @@
  *         Otherwise, the first index where the value is located.
  *
  * Description: Prints a value every time it is compared in the array.
- *              Uses interpolation formula to determine the probe position.
  */
 int interpolation_search(int *array, size_t size, int value)
 {
