@@ -27,6 +27,14 @@ listint_t *jump_list_helper(listint_t *list, size_t step);
 void print_value(listint_t *left, listint_t *right);
 
 /* Structs */
+/**
+ * struct skiplist_s - Linked list with an express lane
+ *
+ * @n: Integer stored in the node
+ * @index: Index of the node in the list
+ * @next: Pointer to the next node in the list
+ * @express: Pointer to the next node in the express lane
+ */
 typedef struct skiplist_s
 {
     int n;
